@@ -3,7 +3,7 @@ var path = require("path");
 var fs = require("fs");
 
 var app = express();
-var PORT = process.env.PORT || 3030;
+var PORT = process.env.PORT || 3001;
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({
