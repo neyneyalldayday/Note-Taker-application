@@ -6,7 +6,7 @@ const fs = require("fs");
 
 //port
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3030;
 
 //data parsing and middleware
 app.use(express.static(path.join(__dirname, "public")));
@@ -15,7 +15,7 @@ app.use(express.json());
 
 //listener
 app.listen(PORT, function() {
-    console.log(`app listening on PORT ${PORT}`);
+    console.log(`app listening on PORT ${port}`);
 })
 
 //route for notes

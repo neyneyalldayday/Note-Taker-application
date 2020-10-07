@@ -10,10 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/neyneyalldayday/Note-Taker-application.git"
   },
-  "author": "",
+  "author": "nene",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/neyneyalldayday/Note-Taker-application/issues"
   },
-  "homepage": "https://github.com/neyneyalldayday/Note-Taker-application#readme"
+  "homepage": "https://github.com/neyneyalldayday/Note-Taker-application#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
 }
