@@ -2,10 +2,8 @@ var express = require("express");
 var path = require("path");
 var fs = require("fs");
 
-
 var app = express();
 var PORT = process.env.PORT || 3030;
-
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({
@@ -32,8 +30,6 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
 })
 
-
-
 app.post("/api/notes", (req, res) => {
     let sNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
     let nNote = req.body;
@@ -44,8 +40,6 @@ app.post("/api/notes", (req, res) => {
     console.log(`Note saved! Id ${noteId}. Content:`, nNote);
     res.json(sNotes);
 })
-
-
 
 app.delete("/api/notes/:id", (req, res) => {
     let sNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
