@@ -33,20 +33,21 @@ app.get("*", function (req, res) {
 app.post("/api/notes", (req, res) => {
     let sNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
     let nNote = req.body;
-    let noteId = noteId;
+    let nId = (sNotes.length + 1).toString();
+    nNote.id = nId
     sNotes.push(nNote);
 
     fs.writeFileSync("db/db.json", JSON.stringify(sNotes));
-    console.log(`Note saved! Id ${noteId}. Content:`, nNote);
+    console.log(`Your note has been saved! Id ${nId}. Content:`, nNote);
     res.json(sNotes);
 })
 
 app.delete("/api/notes/:id", (req, res) => {
     let sNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
-    let noteId = req.params.id;
-    console.log(`Note ${noteId} deleted.`);
-    sNotes = sNotes.filter(currentNote => {
-        return currentNote.id != noteId;
+    let nId = req.params.id;
+    console.log(`Note ${nId} has been deleted.`);
+    sNotes = sNotes.filter(currNote => {
+        return currNote.id != nId;
     })
 
     fs.writeFileSync("db/db.json", JSON.stringify(sNotes));
@@ -54,5 +55,5 @@ app.delete("/api/notes/:id", (req, res) => {
 })
 
 app.listen(PORT, function () {
-    console.log(`app listening on PORT ${PORT}`);
+    console.log(`listening on PORT ${PORT}`);
 })
