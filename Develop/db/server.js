@@ -25,7 +25,34 @@ app.get("/notes", function(req, res) {
 })
 
 app.get("/api/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "public/notes.html"));
+    res.sendFile(path.join(__dirname, "db/db.json"));
 })
+
+app.get("/api/notes/:id", function(req, res) {
+    let savedNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
+    res.json(savedNotes[Number(req.params.id)]);
+})
+
+//route for js file
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+})
+
+//assign ID to note
+
+app.post("/api/notes", (req, res) => {
+    let savedNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
+    let newNote = req.body;
+    let noteId = noteId;
+    savedNotes.push(newNote);
+
+    fs.writeFileSync("db/db.json" , JSON.stringify(savedNotes));
+    console.log(`Note saved! Id ${noteId}. Content:`, newNote);
+    res.json(savedNotes);
+})
+
+
+
+
 
 
